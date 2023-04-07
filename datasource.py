@@ -10,8 +10,8 @@ def getInfo():
     sarea_temp = set ()
     for item in data_list:
         sarea_temp.add(item["sarea"])
-        print (item["sarea"])
+        #print (item["sarea"])
     sarea_list = list(sarea_temp)
 
 
-    getInfo()   
+getInfo()   
