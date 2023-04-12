@@ -95,7 +95,13 @@ class Window(tk.Tk):
         scrollbar.pack(side=tk.RIGHT,fill=tk.Y)
         self.tree.config(yscrollcommand=scrollbar.set)
 
-        #sorted by column in scrollbar
+        bemp_scrollbar = ttk.Scrollbar(self.bemp_warningFrame,command=self.bemp_treeyview)
+        bemp_scrollbar.pack(side=tk.RIGHT,fill=tk.Y)
+        self.bemp_tree.config(yscrollcommand=bemp_scrollbar.set)
+
+        sbi_scrollbar = ttk.Scrollbar(self.sbi_warningFrame,command=self.sbi_treeyview)
+        sbi_scrollbar.pack(side=tk.RIGHT,fill=tk.Y)
+        self.sbi_tree.config(yscrollcommand=sbi_scrollbar.set)
 
     '''
     self.tree.bind('<ButtonRelease-1>',self.sortby)
@@ -119,6 +125,11 @@ class Window(tk.Tk):
         for item in self.tree.get_children():
             self.tree.delete(item)
         
+        for item in self.sbi_tree.get_children():
+            self.sbi_tree.delete(item)
+
+        for item in self.bemp_tree.get_children():
+            self.bemp_tree.delete(item)       
 
         
         # Get selected radio button value
@@ -143,6 +154,12 @@ class Window(tk.Tk):
         # Display data in tree view
         for item in self.area_data:
             self.tree.insert('',tk.END,values=[item['sna'][11:],item['mday'],item['tot'],item['sbi'],item['bemp'],item['ar'],item['act']])
+
+        for item in self.sbi_warning_data:
+            self.sbi_tree.insert('',tk.END,values=[item['sna'][11:],item['bemp']])
+
+        for item in self.bemp_warning_data:
+            self.bemp_tree.insert('',tk.END,values=[item['sna'][11:],item['bemp']])        
         
         
 
