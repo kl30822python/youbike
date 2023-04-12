@@ -64,12 +64,12 @@ class Window(tk.Tk):
         for item in self.bemp_warning_data:
             self.bemp_tree.insert('',tk.END,values=[item['sna'][11:],item['sbi'],item['bemp']])
         self.bemp_warningFrame.pack(side=tk.LEFT)
-        #bemp_warningFrame_end======================
-        #get current datetime
+        # bemp_warningFrame_end======================
+        # Get current datetime
         now = datetime.datetime.now()
-        #display current datetime
+        # Display current datetime
         nowString = now.strftime("%Y-%m-%d %H:%M:%S")
-        self.bottomFrame = ttk.LabelFrame(self,text=f"信義區-{nowString}")
+        self.bottomFrame = ttk.LabelFrame(self,text=f"信義區{nowString}")
         self.bottomFrame.pack()
 
         columns = ('#1', '#2', '#3', '#4', '#5', '#6', '#7')
@@ -94,6 +94,7 @@ class Window(tk.Tk):
             self.tree.insert('',tk.END,values=[item['sna'][11:],item['mday'],item['tot'],item['sbi'],item['bemp'],item['ar'],item['act']])
         
         #幫treeview加scrollbar------------------------------------------------
+
         scrollbar = ttk.Scrollbar(self.bottomFrame,command=self.tree.yview)
         scrollbar.pack(side=tk.RIGHT,fill=tk.Y)
         self.tree.config(yscrollcommand=scrollbar.set)
@@ -124,22 +125,22 @@ class Window(tk.Tk):
 
 
     def radio_Event(self):
-        #get current datetime
+        # get current datetime
         now = datetime.datetime.now()
-        #display current datetime
+        # display current datetime
         nowString = now.strftime("%Y-%m-%d %H:%M:%S")
 
         # Clear tree view
         for item in self.tree.get_children():
             self.tree.delete(item)
-
+        
         for item in self.sbi_tree.get_children():
             self.sbi_tree.delete(item)
 
         for item in self.bemp_tree.get_children():
-            self.bemp_tree.delete(item)
+            self.bemp_tree.delete(item)       
 
-                
+        
         # Get selected radio button value
         area_name = self.radioStringVar.get()  
 
@@ -164,12 +165,10 @@ class Window(tk.Tk):
             self.tree.insert('',tk.END,values=[item['sna'][11:],item['mday'],item['tot'],item['sbi'],item['bemp'],item['ar'],item['act']])
 
         for item in self.sbi_warning_data:
-            self.sbi_tree.insert('',tk.END,values=[item['sna'][11:],item['sbi'],item['bemp']])
+            self.sbi_tree.insert('',tk.END,values=[item['sna'][11:],item['bemp']])
 
         for item in self.bemp_warning_data:
-            self.bemp_tree.insert('',tk.END,values=[item['sna'][11:],item['sbi'],item['bemp']])
-
-        
+            self.bemp_tree.insert('',tk.END,values=[item['sna'][11:],item['bemp']])        
         
         
 
