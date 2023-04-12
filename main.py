@@ -95,11 +95,11 @@ class Window(tk.Tk):
         scrollbar.pack(side=tk.RIGHT,fill=tk.Y)
         self.tree.config(yscrollcommand=scrollbar.set)
 
-        bemp_scrollbar = ttk.Scrollbar(self.bemp_warningFrame,command=self.bemp_treeyview)
+        bemp_scrollbar = ttk.Scrollbar(self.bemp_warningFrame,command=self.bemp_tree.yview)
         bemp_scrollbar.pack(side=tk.RIGHT,fill=tk.Y)
         self.bemp_tree.config(yscrollcommand=bemp_scrollbar.set)
 
-        sbi_scrollbar = ttk.Scrollbar(self.sbi_warningFrame,command=self.sbi_treeyview)
+        sbi_scrollbar = ttk.Scrollbar(self.sbi_warningFrame,command=self.sbi_tree.yview)
         sbi_scrollbar.pack(side=tk.RIGHT,fill=tk.Y)
         self.sbi_tree.config(yscrollcommand=sbi_scrollbar.set)
 
