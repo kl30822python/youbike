@@ -133,8 +133,8 @@ class Window(tk.Tk):
 
     def menu_setting_click(self):
         global sbi_numbers,bemp_numbers
-        retVal = askinteger("設定不足",
-                    "請輸入不足可借可還數量",
+        retVal = askinteger(f"目前設定不足數量:{sbi_numbers}",
+                    "請輸入不足可借可還數量0~5",
                     minvalue=0, maxvalue=5)
         print(retVal)
         sbi_numbers = retVal
