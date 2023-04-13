@@ -4,6 +4,8 @@ from tkinter import ttk
 from PIL import Image,ImageTk
 import datetime
 from tkinter.simpledialog import askinteger
+from messageWindow import MapDisplay #--2023.04.13. 10:56 add
+
 
 
 sbi_numbers = 3
