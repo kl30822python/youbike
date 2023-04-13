@@ -158,8 +158,12 @@ class Window(tk.Tk):
         siteName = itemDic['tags'][0]
         for item in self.area_data:
             if siteName == item['sna']:
-                print(item)
+                selected_data = item
                 break
+            
+        #顯示地圖window
+        mapDisplay = MapDisplay(self,selected_data)
+        mapDisplay.transient(self)
 
     def menu_setting_click(self):
         global sbi_numbers,bemp_numbers
