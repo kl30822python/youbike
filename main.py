@@ -1,8 +1,10 @@
 import datasource
 import tkinter as tk
 from tkinter import ttk
+from PIL import Image,ImageTk
 import datetime
 from tkinter.simpledialog import askinteger
+
 
 sbi_numbers = 3
 bemp_numbers = 3
@@ -10,19 +12,31 @@ bemp_numbers = 3
 class Window(tk.Tk):
     def __init__(self):
         super().__init__()
-        # add menubar that contain a menu
+        # add menubar that contains a menu
         self.menubar = tk.Menu(self)
         self.config(menu=self.menubar)
-        # add command menu in menubar
-
+        # add command menu in menubar        
         self.command_menu = tk.Menu(self.menubar)
-        self.command_menu.add_command(label='設定', command=self.menu_setting_click)
-        self.command_menu.add_command(label='離開', command=self.destroy)
-        self.menubar.add_cascade(label='File', menu=self.command_menu)
+        self.command_menu.add_command(label="設定", command=self.menu_setting_click)
+        self.command_menu.add_command(label="離開", command=self.destroy)
+        self.menubar.add_cascade(label="File", menu=self.command_menu)
 
+        
+        # main Frame
+        mainFrame = ttk.Frame(self)
+        mainFrame.pack(padx=30,pady=50)
+
+        #logoLabel top of top_wrapperFrame       
+        logoImage = Image.open('logo.png')
+        resizeImage = logoImage.resize((270,68),Image.LANCZOS)
+        self.logoTkimage = ImageTk.PhotoImage(resizeImage)
+        logoLabel = ttk.Label(mainFrame,image=self.logoTkimage)
+        logoLabel.pack(pady=(0,50))
+        
+        
 
         #top_wrapperFrame=================
-        top_wrapperFrame = ttk.Frame(self)
+        top_wrapperFrame = ttk.Frame(mainFrame)
         top_wrapperFrame.pack(fill=tk.X)
 
         #topFrame_start===================
@@ -81,7 +95,7 @@ class Window(tk.Tk):
         now = datetime.datetime.now()
         #display current datetime
         nowString = now.strftime("%Y-%m-%d %H:%M:%S")
-        self.bottomFrame = ttk.LabelFrame(self,text=f"信義區-{nowString}")
+        self.bottomFrame = ttk.LabelFrame(mainFrame,text=f"信義區-{nowString}")
         self.bottomFrame.pack()
 
         columns = ('#1', '#2', '#3', '#4', '#5', '#6', '#7')
@@ -138,8 +152,7 @@ class Window(tk.Tk):
                     minvalue=0, maxvalue=5)
         print(retVal)
         sbi_numbers = retVal
-        bemp_numbers = retVal
-        
+        bemp_numbers = retVal       
 
 
     def radio_Event(self):
