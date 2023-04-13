@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import Image,ImageTk
 import datetime
-from tkinter.simpledialog import askinteger
+from tkinter.simpledialog import askinteger, askstring
 from messageWindow import MapDisplay #--2023.04.13. 10:56 add
 
 
@@ -22,6 +22,10 @@ class Window(tk.Tk):
         self.command_menu.add_command(label="設定", command=self.menu_setting_click)
         self.command_menu.add_command(label="離開", command=self.destroy)
         self.menubar.add_cascade(label="File", menu=self.command_menu)
+        # add search menu in menubar
+        self.search_menu = tk.Menu(self.menubar)
+        self.search_menu.add_command(label="搜尋", command=self.menu_search_click)
+        self.menubar.add_cascade(label="Search", menu=self.search_menu)    
 
         
         # main Frame
@@ -160,7 +164,7 @@ class Window(tk.Tk):
             if siteName == item['sna']:
                 selected_data = item
                 break
-            
+
         #顯示地圖window
         mapDisplay = MapDisplay(self,selected_data)
         mapDisplay.transient(self)
@@ -174,6 +178,16 @@ class Window(tk.Tk):
         sbi_numbers = retVal
         bemp_numbers = retVal       
 
+    def menu_search_click(self):
+        siteStr = askstring("查詢的站點名", "請輸入欲查詢的站點名稱")
+        print(siteStr)
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+        for item in self.area_data:
+            if siteStr in (item['sna']) or siteStr in (item['ar']):
+                self.tree.insert('',tk.END, values=[item['sna'][11:],item['mday'],item['tot'],item['sbi'],item['bemp'],item['ar'],item['act']],tags=item['sna'])
+                #print(item)
+        
 
     def radio_Event(self):
         #get current datetime
