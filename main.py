@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import Image,ImageTk
 import datetime
-from tkinter.simpledialog import askinteger, askstring
+from tkinter.simpledialog import askinteger, askstring #askstring輸入查詢字串
 from messageWindow import MapDisplay #--2023.04.13. 10:56 add
 
 
@@ -178,7 +178,7 @@ class Window(tk.Tk):
         sbi_numbers = retVal
         bemp_numbers = retVal       
 
-    def menu_search_click(self):
+    def menu_search_click(self): # 181-189 def 查詢選單輸入
         siteStr = askstring("查詢的站點名", "請輸入欲查詢的站點名稱")
         print(siteStr)
         for item in self.tree.get_children():
